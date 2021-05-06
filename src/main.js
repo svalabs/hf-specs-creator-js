@@ -27,7 +27,7 @@ var files = fs.readdirSync("../md/");
 for(var x=0; x<files.length; x++)
 {
     const contbuff = Buffer.from(fs.readFileSync("../md/"+files[x]).toString(), 'utf-8');
-    const titlebuff = Buffer.from(files[x]);
+    const titlebuff = Buffer.from(files[x].slice(0,-3));
 
     specs.spec.steps.push({        
         content: contbuff.toString('base64'),
