@@ -22,17 +22,32 @@ var specs = {
     }
 };
 
-var files = fs.readdirSync("../md/");
+try
+{
+    var files = fs.readdirSync("../md/");
+}
+catch (e)
+{
+    console.log("Error reading directory: " + e);
+}
 
 for(var x=0; x<files.length; x++)
 {
-    const contbuff = Buffer.from(fs.readFileSync("../md/"+files[x]).toString(), 'utf-8');
-    const titlebuff = Buffer.from(files[x].slice(0,-3));
+    try
+    {
+        const contbuff = Buffer.from(fs.readFileSync("../md/"+files[x]).toString(), 'utf-8');
+        const titlebuff = Buffer.from(files[x].slice(0,-3));
 
-    specs.spec.steps.push({        
-        content: contbuff.toString('base64'),
-        title: titlebuff.toString('base64')
-    })
+        specs.spec.steps.push({        
+            content: contbuff.toString('base64'),
+            title: titlebuff.toString('base64')
+        })
+    }
+    catch(e)
+    {
+        console.log("Error reading file and adding to array: " + e);
+    }
+    
 }
 
 for(var x=0; x<config.vm.length; x++)
@@ -43,5 +58,12 @@ for(var x=0; x<config.vm.length; x++)
     specs.spec.virtualmachines.push(newobj)
 }
 
-fs.writeFileSync("../output/result.yml", yaml.dump(specs));
+try
+{
+    fs.writeFileSync("../output/result.yml", yaml.dump(specs));
+}
+catch (e)
+{
+    console.log("Error writing file to output: " + e);
+}
 console.log('DONE!');
