@@ -1,0 +1,12 @@
+scenario:
+  id: basic-scenario
+  title: foo
+  description: Fancy Description
+  keepalive_duration: 15m
+  pause_duration: 1h
+  pauseable: true
+vm:
+  - name: master
+    type: hcloud
+  - name: node1 
+    type: hcloud
