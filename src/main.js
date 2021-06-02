@@ -1,6 +1,7 @@
 const yaml = require('js-yaml');
 const fs   = require('fs');
 const crypto = require('crypto');
+const configParser = require('./configparser')
 
 var config = yaml.load(fs.readFileSync("../scenarios.yml",'utf8'));
 
