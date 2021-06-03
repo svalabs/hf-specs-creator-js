@@ -16,8 +16,12 @@ for(var x=0; x<files.length; x++)
 {   
     try
     {
-        const contbuff = Buffer.from(fs.readFileSync("../md/"+files[x]).toString(), 'utf-8');
-        const titlebuff = Buffer.from(files[x].slice(0,-3));
+        var rawMarkdown = fs.readFileSync("../md/"+files[x]).toString()
+
+        var config = configParser.getConfigFromMD(rawMarkdown)
+
+        var contbuff = Buffer.from(rawMarkdown, 'utf-8');
+        var titlebuff = Buffer.from(files[x].slice(0,-3));
 
         
     }
