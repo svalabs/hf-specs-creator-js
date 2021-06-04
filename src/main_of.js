@@ -1,7 +1,8 @@
 const yaml = require('js-yaml');
 const fs   = require('fs');
 const crypto = require('crypto');
-const configParser = require('./configparser')
+const configParser = require('./configparser');
+const headerParser = require('./headerParser');
 
 try
 {
@@ -19,6 +20,7 @@ for(var x=0; x<files.length; x++)
         var rawMarkdown = fs.readFileSync("../md/"+files[x]).toString()
 
         var config = configParser.getConfigFromMD(rawMarkdown)
+        headerParser.getHeaderFromMD(rawMarkdown)
 
         var contbuff = Buffer.from(rawMarkdown, 'utf-8');
         var titlebuff = Buffer.from(files[x].slice(0,-3));
