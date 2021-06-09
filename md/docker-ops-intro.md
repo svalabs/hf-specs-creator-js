@@ -10,6 +10,7 @@ vm:
   - name: node1
     type: cx21-docker
 ---
+
 # Intro
 <style>
 code{color:#039BE5;font-weight:bold;background-color:#ddd;padding:1px 10px 2px 10px;border-radius:10px;display:inline-block;}
@@ -17,15 +18,12 @@ pre{overflow-x: auto;}
 img{width: 100%;height: auto;}
 </style>
 <base target="_blank">
----
 
 Concepts in this exercise:
 * Docker engine
 * Containers & Images
 * Image registries and Docker Hub
 * Container Isolation
-
----
 
 # Tips
 <style>
