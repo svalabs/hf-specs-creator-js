@@ -1,9 +1,27 @@
-function getHeaderFromMD(markdown_string)
+function getPartsFromMD(markdown_string)
 {
     var query = new RegExp(/[^#]#\s/g);
-    var result = query.exec(markdown_string)
+    var result = []
+    
+    // Find all headers
+    do
+    {
+        var entry = query.exec(markdown_string)
 
-    console.log(result)
+        if(entry)
+        {
+            result.push(entry.index)
+        }
+    }
+    while(entry)
+
+    // Split document at header psoitions
+    var parts = []
+
+    for(x = 0; x < result.length; x++)
+    {
+
+    }
 }
 
-module.exports.getHeaderFromMD = getHeaderFromMD
+module.exports.getPartsFromMD = getPartsFromMD
