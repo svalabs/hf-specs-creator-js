@@ -19,12 +19,61 @@ for(var x=0; x<files.length; x++)
     {
         var rawMarkdown = fs.readFileSync("../md/"+files[x]).toString()
 
+        // Get the right configuration
         var config = configParser.getConfigFromMD(rawMarkdown)
-        headerParser.getPartsFromMD(rawMarkdown)
 
-        var contbuff = Buffer.from(rawMarkdown, 'utf-8');
-        var titlebuff = Buffer.from(files[x].slice(0,-3));
+        // Get the different parts seperated by the headers
+        var parts = headerParser.getPartsFromMD(rawMarkdown)
+        
+        // Create new file for each found part
+        parts.forEach(element => {
 
+            // Raw specs
+            var specs = {
+                apiVersion: "hobbyfarm.io/v1",
+                kind: "Scenario",
+                metadata: {
+                    name: "Scenario-"+crypto.randomBytes(8).toString('hex')
+                },
+                spec: {
+                    id: config.scenario.id,
+                    title: Buffer.from(config.scenario.id).toString('base64'),
+                    description: Buffer.from(config.scenario.description).toString('base64'),
+                    pause_duration: config.scenario.pause_duration,
+                    keepalive_duration: config.scenario.keepalive_duration,
+                    pauseable: config.scenario.pauseable,
+                    steps: [],
+                    virtualmachines: []
+                }
+            };
+
+            // Add vms to specs
+            for(var x=0; x<config.vm.length; x++)
+            {
+                const newobj = {}
+                newobj[config.vm[x].name] =  config.vm[x].type
+
+                specs.spec.virtualmachines.push(newobj)
+            }
+
+            var title = ("Scenario-"+crypto.randomBytes(8).toString('hex'))
+            // Add content to specs
+            specs.spec.steps.push({        
+                content: Buffer.from(element).toString('base64'),
+                title: title.toString('base64')
+            })
+
+            try
+            {
+                fs.writeFileSync("../output/"+title+".yml", yaml.dump(specs));
+            }
+            catch (e)
+            {
+                console.log("Error writing file to output: " + e);
+            }
+
+
+        });
         
     }
     catch(e)

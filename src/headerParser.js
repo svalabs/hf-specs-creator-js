@@ -20,8 +20,11 @@ function getPartsFromMD(markdown_string)
 
     for(x = 0; x < result.length; x++)
     {
-
+        var newPart = markdown_string.slice(result[x], result[x+1])
+        parts.push(newPart)
     }
+
+    return parts
 }
 
 module.exports.getPartsFromMD = getPartsFromMD
