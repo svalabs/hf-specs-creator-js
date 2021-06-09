@@ -1,0 +1,18 @@
+apiVersion: hobbyfarm.io/v1
+kind: Scenario
+metadata:
+  name: Scenario-2222f74d6f5f5551
+spec:
+  id: basic-scenario
+  title: YmFzaWMtc2NlbmFyaW8=
+  description: RmFuY3kgRGVzY3JpcHRpb24=
+  pause_duration: 1h
+  keepalive_duration: 15m
+  pauseable: true
+  steps:
+    - content: >-
+        CiMgw5xiZXJzY2hyaWZ0IDMKCkF1Y2ggaGllciBrYW5uIG1hbiBaZXVnIHNjaHJlaWJlbi4gRGFzIHNvbGx0ZSBkYW5uIGRlciBkcml0dGUgUGFydCBzZWlu
+      title: Scenario-600d213bafc8c830
+  virtualmachines:
+    - master: hcloud
+    - node1: hcloud
