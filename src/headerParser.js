@@ -1,6 +1,6 @@
 function getPartsFromMD(markdown_string)
 {
-    var query = new RegExp(/[^#]#\s/g);
+    var query = new RegExp(/^#\s/g);
     var result = []
     
     // Find all headers
