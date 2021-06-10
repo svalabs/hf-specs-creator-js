@@ -15,13 +15,9 @@ function transform()
         console.log("Error reading directory: " + e);
     }
 
-    console.log("Found files: " + files.length)
-
     // Iterate through folder
     for(var iterationcounter=0; iterationcounter<files.length; iterationcounter++)
     {   
-        console.log('Iteration: ' + iterationcounter)
-
         try
         {
             var rawMarkdown = fs.readFileSync("../md/"+files[iterationcounter]).toString()

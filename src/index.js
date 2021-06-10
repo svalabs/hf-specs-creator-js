@@ -18,4 +18,5 @@ function toyml()
 function tomd()
 {
     console.log("Converting YML to MD");
+    yml2md.transform()
 }
