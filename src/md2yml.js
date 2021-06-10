@@ -3,6 +3,7 @@ const fs   = require('fs');
 const crypto = require('crypto');
 const configParser = require('./configparser');
 const headerParser = require('./headerParser');
+const titleParser = require('./titleparser');
 
 function transform()
 {
@@ -55,22 +56,23 @@ function transform()
 
                 specs.spec.virtualmachines.push(newobj)
             }
-
-            var title = ("Scenario-"+crypto.randomBytes(8).toString('hex'))
             
             // Create new file for each found part
             parts.forEach(element => {
 
+                //var title = ("Scenario-"+crypto.randomBytes(8).toString('hex'))
+
+                var title = titleParser.parseTitleFromString(element);
                 // Add content to specs
                 specs.spec.steps.push({        
                     content: Buffer.from(element).toString('base64'),
-                    title: title.toString('base64')
+                    title: Buffer.from(title).toString('base64')
                 })
             });
 
             try
             {
-                fs.writeFileSync("../output/"+title+".yml", yaml.dump(specs));
+                fs.writeFileSync("../output/"+config.scenario.id+".yml", yaml.dump(specs));
             }
             catch (e)
             {
