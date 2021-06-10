@@ -23,8 +23,6 @@ function getPartsFromMD(markdown_string)
         var newPart = markdown_string.slice(result[x], result[x+1])
         parts.push(newPart)
     }
-
-    console.log(parts.toString())
     return parts
 }
 

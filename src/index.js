@@ -13,10 +13,12 @@ function toyml()
 {
     console.log("Converting MD to YML");
     md2yml.transform();
+    console.log("DONE!");
 }
 
 function tomd()
 {
     console.log("Converting YML to MD");
     yml2md.transform()
+    console.log("DONE!");
 }
