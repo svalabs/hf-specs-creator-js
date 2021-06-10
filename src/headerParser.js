@@ -24,6 +24,7 @@ function getPartsFromMD(markdown_string)
         parts.push(newPart)
     }
 
+    console.log(parts.toString())
     return parts
 }
 
