@@ -18,6 +18,8 @@ function transform()
     // Iterate through folder
     for(var x=0; x<files.length; x++)
     {   
+        console.log('Iteration: ' + x)
+
         try
         {
             var rawMarkdown = fs.readFileSync("../md/"+files[x]).toString()
