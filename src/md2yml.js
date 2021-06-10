@@ -15,14 +15,16 @@ function transform()
         console.log("Error reading directory: " + e);
     }
 
+    console.log("Found files: " + files.length)
+
     // Iterate through folder
-    for(var x=0; x<files.length; x++)
+    for(var iterationcounter=0; iterationcounter<files.length; iterationcounter++)
     {   
-        console.log('Iteration: ' + x)
+        console.log('Iteration: ' + iterationcounter)
 
         try
         {
-            var rawMarkdown = fs.readFileSync("../md/"+files[x]).toString()
+            var rawMarkdown = fs.readFileSync("../md/"+files[iterationcounter]).toString()
 
             // Get the right configuration
             var config = configParser.getConfigFromMD(rawMarkdown)
@@ -50,10 +52,10 @@ function transform()
             };
 
             // Add vms to specs
-            for(var x=0; x<config.vm.length; x++)
+            for(var vmcounter=0; vmcounter<config.vm.length; vmcounter++)
             {
                 const newobj = {}
-                newobj[config.vm[x].name] =  config.vm[x].type
+                newobj[config.vm[vmcounter].name] =  config.vm[vmcounter].type
 
                 specs.spec.virtualmachines.push(newobj)
             }
